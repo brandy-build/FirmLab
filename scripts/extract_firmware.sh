@@ -10,6 +10,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 FW_FILE="$1"
+RAW_DIR="firmware/raw"
 EXTRACT_DIR="firmware/extracted"
 
 if [[ ! -f "$FW_FILE" ]]; then

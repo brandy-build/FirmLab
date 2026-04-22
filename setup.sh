@@ -16,6 +16,7 @@ run_apt() {
     "$@"
   fi
 }
+APT_PACKAGES=(binwalk qemu-user-static gdb-multiarch python3 python3-pip file)
 
 print_versions() {
   echo "[+] Tool versions"
@@ -57,6 +58,8 @@ install_tools() {
   export DEBIAN_FRONTEND=noninteractive
   run_apt apt-get update
   run_apt apt-get install -y "${APT_PACKAGES[@]}"
+  sudo apt-get update
+  sudo apt-get install -y "${APT_PACKAGES[@]}"
   echo "[+] Installation complete. Running validation..."
   check_tools
 }
