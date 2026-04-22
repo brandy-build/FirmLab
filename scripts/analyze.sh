@@ -41,6 +41,12 @@ file "$TARGET_DIR" > "${REPORT_PREFIX}_file.txt"
   grep -RIna --binary-files=text "strcpy" "$TARGET_DIR" 2>/dev/null || true
   echo "\n## memcpy"
   grep -RIna --binary-files=text "memcpy" "$TARGET_DIR" 2>/dev/null || true
+  echo "\n## sprintf"
+  grep -RIna --binary-files=text "sprintf" "$TARGET_DIR" 2>/dev/null || true
+  echo "\n## lighttpd"
+  grep -RIna --binary-files=text "lighttpd" "$TARGET_DIR" 2>/dev/null || true
+  echo "\n## telnetd"
+  grep -RIna --binary-files=text "telnetd" "$TARGET_DIR" 2>/dev/null || true
 } > "${REPORT_PREFIX}_grep.txt"
 
 echo "[+] Analysis complete. Outputs:"

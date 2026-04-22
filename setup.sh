@@ -7,6 +7,15 @@ set -euo pipefail
 #   ./setup.sh --check    # validate tool availability and print versions
 
 REQUIRED_CMDS=(binwalk qemu-mips-static gdb-multiarch python3 pip3 file strings grep)
+APT_PACKAGES=(binwalk qemu-user-static gdb-multiarch python3 python3-pip file binutils grep)
+
+run_apt() {
+  if command -v sudo >/dev/null 2>&1; then
+    sudo "$@"
+  else
+    "$@"
+  fi
+}
 APT_PACKAGES=(binwalk qemu-user-static gdb-multiarch python3 python3-pip file)
 
 print_versions() {
@@ -47,6 +56,8 @@ install_tools() {
   fi
 
   export DEBIAN_FRONTEND=noninteractive
+  run_apt apt-get update
+  run_apt apt-get install -y "${APT_PACKAGES[@]}"
   sudo apt-get update
   sudo apt-get install -y "${APT_PACKAGES[@]}"
   echo "[+] Installation complete. Running validation..."

@@ -16,6 +16,8 @@ Validate installed tools:
 ./setup.sh --check
 ```
 
+If your environment has no `sudo`, run as root and the installer will call `apt-get` directly.
+
 ## 2) Place Firmware Sample
 Why: keeping originals in a stable location preserves chain of custody.
 
@@ -44,3 +46,9 @@ Outputs are stored in `analysis/`.
 - Identify binaries that reference `strcpy`, `memcpy`, `sprintf`.
 - Attempt emulation with QEMU user-mode and test malformed inputs.
 - Document all findings in `analysis/findings.md`.
+
+## Quick readiness self-check
+```bash
+bash -n setup.sh scripts/extract_firmware.sh scripts/analyze.sh
+./setup.sh --check
+```

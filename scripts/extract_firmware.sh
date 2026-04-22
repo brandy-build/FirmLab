@@ -32,6 +32,9 @@ cp "$FW_FILE" "$work_dir/$base_name"
 pushd "$work_dir" >/dev/null
 if ! binwalk -eM "$base_name"; then
   echo "[-] binwalk extraction failed for $FW_FILE"
+  echo "[!] Recovery tips:"
+  echo "    - Re-run with privileges: binwalk -eM --run-as=root $FW_FILE"
+  echo "    - Try single-pass extraction: binwalk -e $FW_FILE"
   exit 1
 fi
 popd >/dev/null
